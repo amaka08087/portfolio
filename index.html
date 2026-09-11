@@ -3,17 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MakkySignature | Creative Hub</title>
-  
+  <title>MakkySignature | Visual Director & AI Producer</title>
+
+  <!-- Open Graph & Social Preview Meta Tags -->
+  <meta property="og:title" content="MakkySignature | Creative Studio Hub" />
+  <meta property="og:description" content="Visual Director, AI Producer, Graphic Designer & Voiceover Artist bridging African folklore, sci-fi animations, and premium digital branding." />
+  <meta property="og:image" content="IMG_4447.jpeg" />
+  <meta property="og:url" content="https://amaka08087.github.io/portfolio/" />
+  <meta name="twitter:card" content="summary_large_image" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  
+
   <style>
     :root {
       --bg-dark: #09060c;
-      --card-bg: rgba(22, 16, 27, 0.88);
-      --card-border: rgba(217, 70, 128, 0.25);
+      --card-bg: rgba(22, 16, 27, 0.92);
+      --card-border: rgba(217, 70, 128, 0.28);
       --accent-pink: #d94680;
       --accent-rose: #ff85b3;
       --accent-gold: #f3c27a;
@@ -40,10 +47,10 @@
 
     .ambient-glow {
       position: fixed;
-      width: 340px;
-      height: 340px;
+      width: 380px;
+      height: 380px;
       border-radius: 50%;
-      filter: blur(110px);
+      filter: blur(120px);
       pointer-events: none;
       z-index: 0;
       opacity: 0.35;
@@ -56,67 +63,60 @@
     .wrapper {
       position: relative;
       z-index: 1;
-      max-width: 500px;
+      max-width: 520px;
       margin: 0 auto;
-      padding: 2.2rem 1.2rem 4rem;
+      padding: 2rem 1.2rem 4rem;
     }
 
     .view-page {
       display: none;
-      animation: fadeIn 0.35s ease forwards;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
     }
 
     .view-page.active {
       display: block;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(12px); }
-      to { opacity: 1; transform: translateY(0); }
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .back-nav {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(217, 70, 128, 0.15);
       color: var(--accent-rose);
       border: 1px solid var(--card-border);
-      padding: 0.5rem 1.1rem;
+      padding: 0.6rem 1.2rem;
       border-radius: 50px;
-      font-size: 0.85rem;
-      font-weight: 600;
+      font-size: 0.88rem;
+      font-weight: 700;
       cursor: pointer;
       margin-bottom: 1.6rem;
       transition: all 0.2s ease;
     }
     .back-nav:hover {
-      background: rgba(217, 70, 128, 0.2);
+      background: rgba(217, 70, 128, 0.3);
+      transform: translateX(-3px);
     }
 
     .portrait-stage {
       position: relative;
       width: 100%;
-      max-width: 340px;
+      max-width: 320px;
       margin: 0 auto 1.6rem;
       border-radius: 28px;
       padding: 3px;
-      background: linear-gradient(135deg, rgba(217, 70, 128, 0.75), rgba(243, 194, 122, 0.5), rgba(217, 70, 128, 0.3));
+      background: linear-gradient(135deg, rgba(217, 70, 128, 0.8), rgba(243, 194, 122, 0.6), rgba(217, 70, 128, 0.4));
       box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6), 0 0 25px rgba(217, 70, 128, 0.3);
-      animation: floatMotion 3.8s ease-in-out infinite alternate;
-    }
-
-    @keyframes floatMotion {
-      0% { transform: translateY(0px) scale(1); }
-      100% { transform: translateY(-10px) scale(1.02); }
     }
 
     .portrait-frame {
       width: 100%;
-      height: 380px;
+      height: 350px;
       border-radius: 25px;
       overflow: hidden;
-      position: relative;
       background: #140e1a;
     }
 
@@ -126,12 +126,6 @@
       object-fit: cover;
       object-position: top center;
       display: block;
-      animation: zoomMotion 4.5s ease-in-out infinite alternate;
-    }
-
-    @keyframes zoomMotion {
-      0% { transform: scale(1); }
-      100% { transform: scale(1.08); }
     }
 
     .hero {
@@ -139,7 +133,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin-bottom: 2rem;
+      margin-bottom: 1.8rem;
     }
 
     .brand-pill {
@@ -180,7 +174,34 @@
       color: var(--text-muted);
       font-size: 0.88rem;
       margin-bottom: 1.3rem;
-      max-width: 440px;
+      max-width: 460px;
+    }
+
+    /* About Section Card */
+    .about-box {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 1.4rem;
+      margin-bottom: 1.8rem;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+      text-align: left;
+    }
+
+    .about-box h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.1rem;
+      color: var(--accent-rose);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .about-box p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.65;
     }
 
     .social-icon-row {
@@ -224,7 +245,7 @@
     .menu-grid {
       display: flex;
       flex-direction: column;
-      gap: 0.95rem;
+      gap: 1rem;
       width: 100%;
     }
 
@@ -256,15 +277,25 @@
       margin-bottom: 0.2rem;
     }
 
-    .nav-tile .tile-info span {
+    .nav-tile .tile-info .tag {
       font-size: 0.8rem;
       color: var(--accent-gold);
+      display: block;
+      font-weight: 600;
+    }
+
+    .nav-tile .tile-info .desc {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+      display: block;
     }
 
     .nav-tile .tile-arrow {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       color: var(--accent-rose);
       font-weight: bold;
+      padding-left: 8px;
     }
 
     .page-header {
@@ -286,7 +317,7 @@
     .stack {
       display: flex;
       flex-direction: column;
-      gap: 1.4rem;
+      gap: 1.6rem;
       width: 100%;
     }
 
@@ -396,7 +427,7 @@
 
     .design-item-img {
       width: 100%;
-      height: 180px;
+      height: 200px;
       overflow: hidden;
       background: #120b17;
     }
@@ -406,17 +437,22 @@
       height: 100%;
       object-fit: cover;
       display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .design-item:hover .design-item-img img {
+      transform: scale(1.04);
     }
 
     .design-meta {
-      padding: 0.75rem 0.85rem;
+      padding: 0.85rem;
       display: flex;
       flex-direction: column;
       gap: 2px;
     }
 
     .design-meta span {
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       color: var(--accent-gold);
       text-transform: uppercase;
       letter-spacing: 0.8px;
@@ -424,7 +460,7 @@
     }
 
     .design-meta h4 {
-      font-size: 0.85rem;
+      font-size: 0.86rem;
       color: #fff;
       font-weight: 600;
     }
@@ -484,7 +520,7 @@
     <div id="page-home" class="view-page active">
       <div class="portrait-stage">
         <div class="portrait-frame">
-          <img src="IMG_4447.jpeg" alt="MakkySignature" />
+          <img src="IMG_4447.jpeg" alt="MakkySignature Creative Producer" />
         </div>
       </div>
 
@@ -496,7 +532,7 @@
           Visual director, AI producer &amp; brand designer bridging cinematic folklore, bespoke graphic design, commercial voiceovers, and dynamic audio scoring.
         </p>
 
-        <!-- Social Icons Row (Now including WhatsApp) -->
+        <!-- Social Icons Row -->
         <div class="social-icon-row">
           <a href="https://youtube.com/@makkysigstories?si=tCkwCPETmwiljqFi" target="_blank" class="social-badge" title="MakkySigStories">
             <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
@@ -520,16 +556,26 @@
           </a>
         </div>
 
-        <button onclick="showPage('page-hire')" class="btn btn-primary" style="margin-bottom: 1.5rem;">
-          💼 Work With Me &amp; Community
+        <button onclick="showPage('page-hire')" class="btn btn-primary" style="margin-bottom: 1.2rem;">
+          💼 Work With Me &amp; Inquiries
         </button>
       </header>
 
+      <!-- Warm "About Makky" Section -->
+      <div class="about-box">
+        <h3>✨ About The Creator</h3>
+        <p>
+          I am a multidisciplinary visual director and AI producer fusing timeless African cultural folklore with modern cinema pipelines. From high-stakes drama series and whimsical 3D animated universes to corporate brand campaigns and studio voiceovers, I create immersive digital experiences designed to captivate global audiences.
+        </p>
+      </div>
+
+      <!-- Navigation Directory with Strengthened Subtitles -->
       <div class="menu-grid">
         <div class="nav-tile" onclick="showPage('page-stories')">
           <div class="tile-info">
             <h3>MakkySigStories</h3>
-            <span>Episodic Cinema &bull; Cultural Drama</span>
+            <span class="tag">Episodic Cinema &bull; Cultural Drama</span>
+            <span class="desc">High-stakes African drama produced with cinema-grade AI visuals</span>
           </div>
           <div class="tile-arrow">&rarr;</div>
         </div>
@@ -537,7 +583,8 @@
         <div class="nav-tile" onclick="showPage('page-cartoons')">
           <div class="tile-info">
             <h3>Kiddies World &bull; Cartoons &amp; Sci-Fi</h3>
-            <span>The Glitch Dragon &bull; Bedtime Moral Tales</span>
+            <span class="tag">3D Animation &bull; The Glitch Dragon</span>
+            <span class="desc">Character-driven sci-fi adventures and bedtime moral fables</span>
           </div>
           <div class="tile-arrow">&rarr;</div>
         </div>
@@ -545,7 +592,8 @@
         <div class="nav-tile" onclick="showPage('page-bible')">
           <div class="tile-info">
             <h3>Kiddies World &bull; Bible Series</h3>
-            <span>Scripture Animations &bull; Faith Stories</span>
+            <span class="tag">Faith Stories &bull; Scripture Animation</span>
+            <span class="desc">Engaging, values-driven Sunday school retellings</span>
           </div>
           <div class="tile-arrow">&rarr;</div>
         </div>
@@ -553,7 +601,8 @@
         <div class="nav-tile" onclick="showPage('page-graphics')">
           <div class="tile-info">
             <h3>Graphic Design &amp; Branding</h3>
-            <span>Flyers &bull; Thumbnails &bull; Brand Assets</span>
+            <span class="tag">Brand Assets &bull; Custom Flyers &bull; Covers</span>
+            <span class="desc">High-converting social posters, thumbnails, and corporate identities</span>
           </div>
           <div class="tile-arrow">&rarr;</div>
         </div>
@@ -561,7 +610,8 @@
         <div class="nav-tile" onclick="showPage('page-adverts')">
           <div class="tile-info">
             <h3>Commercials &amp; Brand Adverts</h3>
-            <span>Creative Ad Reels &bull; Concept Promos</span>
+            <span class="tag">Creative Ad Reels &bull; Concept Promos</span>
+            <span class="desc">Dynamic visual storytelling and campaign concept directing</span>
           </div>
           <div class="tile-arrow">&rarr;</div>
         </div>
@@ -569,7 +619,8 @@
         <div class="nav-tile" onclick="showPage('page-voiceover')">
           <div class="tile-info">
             <h3>Voiceover &amp; Studio</h3>
-            <span>Narration &bull; Commercial Voice &bull; Host</span>
+            <span class="tag">Narration &bull; Character Voicing &bull; Ads</span>
+            <span class="desc">Studio vocal performances for animation, ads, and podcasts</span>
           </div>
           <div class="tile-arrow">&rarr;</div>
         </div>
@@ -577,7 +628,8 @@
         <div class="nav-tile" onclick="showPage('page-audio')">
           <div class="tile-info">
             <h3>Audiomack &amp; Music</h3>
-            <span>Soundtracks &bull; Custom Compositions</span>
+            <span class="tag">Original Soundtracks &bull; Sound Design</span>
+            <span class="desc">Theme songs and atmospheric music for cinematic media</span>
           </div>
           <div class="tile-arrow">&rarr;</div>
         </div>
@@ -587,7 +639,7 @@
     <!-- PAGE 2: MAKKYSIGSTORIES -->
     <div id="page-stories" class="view-page">
       <button class="back-nav" onclick="showPage('page-home')">&larr; Back to Main Hub</button>
-      
+
       <div class="page-header">
         <h2>MakkySigStories</h2>
         <p>Episodic movies, drama series, and rich cultural folklore.</p>
@@ -596,7 +648,7 @@
       <div class="stack">
         <div class="card">
           <div class="video-player-frame">
-            <iframe src="https://www.youtube-nocookie.com/embed/M_32v1-T3dg" allowfullscreen></iframe>
+            <iframe src="https://www.youtube-nocookie.com/embed/M_32v1-T3dg" title="The Price of Beauty" allowfullscreen></iframe>
           </div>
           <div class="card-body">
             <span class="card-badge">Featured Episode</span>
@@ -615,7 +667,7 @@
     <!-- PAGE 3: KIDDIES WORLD - CARTOONS & 3D ANIMATION -->
     <div id="page-cartoons" class="view-page">
       <button class="back-nav" onclick="showPage('page-home')">&larr; Back to Main Hub</button>
-      
+
       <div class="page-header">
         <span class="card-badge">YouTube Channel</span>
         <h2>Kiddies World with Makky</h2>
@@ -625,7 +677,7 @@
       <div class="stack">
         <div class="card">
           <div class="video-player-frame">
-            <iframe src="https://www.youtube-nocookie.com/embed/W8_qRMrOsGY" allowfullscreen></iframe>
+            <iframe src="https://www.youtube-nocookie.com/embed/W8_qRMrOsGY" title="4 Kids vs The Glitch Dragon" allowfullscreen></iframe>
           </div>
           <div class="card-body">
             <span class="card-badge">3D Animated Movie</span>
@@ -637,7 +689,7 @@
 
         <div class="card">
           <div class="card-thumb-img">
-            <img src="https://img.youtube.com/vi/ATBXbNE73JQ/maxresdefault.jpg" onerror="this.onerror=null; this.src='https://img.youtube.com/vi/ATBXbNE73JQ/hqdefault.jpg';" alt="Bedtime Tales" />
+            <img src="https://img.youtube.com/vi/ATBXbNE73JQ/maxresdefault.jpg" onerror="this.onerror=null; this.src='https://img.youtube.com/vi/ATBXbNE73JQ/hqdefault.jpg';" alt="Barnaby Bedtime Tales" />
           </div>
           <div class="card-body">
             <span class="card-badge">Bedtime Moral Tales</span>
@@ -656,7 +708,7 @@
     <!-- PAGE 4: KIDDIES WORLD - BIBLE STORIES -->
     <div id="page-bible" class="view-page">
       <button class="back-nav" onclick="showPage('page-home')">&larr; Back to Main Hub</button>
-      
+
       <div class="page-header">
         <span class="card-badge">YouTube Channel</span>
         <h2>Kiddies World with Makky</h2>
@@ -666,7 +718,7 @@
       <div class="stack">
         <div class="card">
           <div class="video-player-frame-short">
-            <iframe src="https://www.youtube-nocookie.com/embed/mpTXgw0I4eY" allowfullscreen></iframe>
+            <iframe src="https://www.youtube-nocookie.com/embed/mpTXgw0I4eY" title="Noah's Ark" allowfullscreen></iframe>
           </div>
           <div class="card-body">
             <span class="card-badge">Genesis 6–9</span>
@@ -685,7 +737,7 @@
     <!-- PAGE 5: GRAPHIC DESIGN & BRANDING -->
     <div id="page-graphics" class="view-page">
       <button class="back-nav" onclick="showPage('page-home')">&larr; Back to Main Hub</button>
-      
+
       <div class="page-header">
         <h2>Graphic Design &amp; Branding</h2>
         <p>Visual identity, custom flyers, promo art, and YouTube thumbnails.</p>
@@ -694,7 +746,7 @@
       <div class="design-grid">
         <div class="design-item">
           <div class="design-item-img">
-            <img src="IMG_4524.jpeg" alt="Graphic Design 1" />
+            <img src="IMG_4524.jpeg" alt="Emmaco Ventures Construction Flyer" />
           </div>
           <div class="design-meta">
             <span>Visual Concept</span>
@@ -704,7 +756,7 @@
 
         <div class="design-item">
           <div class="design-item-img">
-            <img src="IMG_5870.jpeg" alt="Graphic Design 2" />
+            <img src="IMG_5870.jpeg" alt="Zmart Tech Elite Websites Poster" />
           </div>
           <div class="design-meta">
             <span>Social Poster</span>
@@ -714,7 +766,7 @@
 
         <div class="design-item">
           <div class="design-item-img">
-            <img src="IMG_7058.jpeg" alt="Graphic Design 3" />
+            <img src="IMG_7058.jpeg" alt="Eid Mubarak Greeting Artwork" />
           </div>
           <div class="design-meta">
             <span>Holiday Artwork</span>
@@ -724,7 +776,7 @@
 
         <div class="design-item">
           <div class="design-item-img">
-            <img src="IMG_5098.jpeg" alt="Graphic Design 4" />
+            <img src="IMG_5098.jpeg" alt="Creative Brand Shoot Artwork" />
           </div>
           <div class="design-meta">
             <span>Cover Artwork</span>
@@ -748,7 +800,7 @@
     <!-- PAGE 6: COMMERCIALS & BRAND ADVERTS -->
     <div id="page-adverts" class="view-page">
       <button class="back-nav" onclick="showPage('page-home')">&larr; Back to Main Hub</button>
-      
+
       <div class="page-header">
         <h2>Brand Adverts &amp; Commercials</h2>
         <p>High-energy concept advertising and promo reels.</p>
@@ -757,7 +809,7 @@
       <div class="stack">
         <div class="card">
           <div class="card-thumb-img">
-            <img src="IMG_4606.jpeg" alt="Guinness Advert Splash" />
+            <img src="IMG_4606.jpeg" alt="Guinness Brand Commercial Promo Reel" />
           </div>
           <div class="card-body">
             <span class="card-badge">Concept Advert Reel</span>
@@ -774,7 +826,7 @@
     <!-- PAGE 7: VOICEOVER & STUDIO -->
     <div id="page-voiceover" class="view-page">
       <button class="back-nav" onclick="showPage('page-home')">&larr; Back to Main Hub</button>
-      
+
       <div class="page-header">
         <h2>Voiceover &amp; Studio</h2>
         <p>Character voicing, narration, commercials, and podcast hosting.</p>
@@ -783,7 +835,7 @@
       <div class="stack">
         <div class="card">
           <div class="card-thumb-img">
-            <img src="IMG_4453.jpeg" alt="Podcast Studio Session" />
+            <img src="IMG_4453.jpeg" alt="Podcast and Voiceover Recording Studio" />
           </div>
           <div class="card-body">
             <span class="card-badge">Microphone &amp; Studio Production</span>
@@ -798,7 +850,7 @@
     <!-- PAGE 8: AUDIOMACK & MUSIC -->
     <div id="page-audio" class="view-page">
       <button class="back-nav" onclick="showPage('page-home')">&larr; Back to Main Hub</button>
-      
+
       <div class="page-header">
         <h2>Audiomack &amp; Music</h2>
         <p>Soundtracks, scoring, and original AI vocal tracks.</p>
@@ -807,7 +859,7 @@
       <div class="stack">
         <div class="card">
           <div class="card-thumb-img">
-            <img src="IMG_5098.jpeg" alt="Audiomack Cover" />
+            <img src="IMG_5098.jpeg" alt="Audiomack Streaming Track Cover" />
           </div>
           <div class="card-body">
             <span class="card-badge">Original Streaming Track</span>
@@ -822,9 +874,9 @@
     <!-- PAGE 9: HIRE & COMMUNITY -->
     <div id="page-hire" class="view-page">
       <button class="back-nav" onclick="showPage('page-home')">&larr; Back to Main Hub</button>
-      
+
       <div class="page-header">
-        <h2>Work With Me &amp; Updates</h2>
+        <h2>Work With Me &amp; Inquiries</h2>
         <p>Direct bookings, community updates, and coaching.</p>
       </div>
 
