@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MakkySignature | Creative Hub</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-dark: #09060c;
+      --card-bg: rgba(22, 16, 27, 0.88);
+      --card-border: rgba(217, 70, 128, 0.25);
+      --accent-pink: #d94680;
+      --accent-rose: #ff85b3;
+      --accent-gold: #f3c27a;
+      --text-main: #f9f8fa;
+      --text-muted: #b8b1c2;
+      --btn-grad: linear-gradient(135deg, #d94680, #96194b);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    .ambient-glow {
+      position: fixed;
+      width: 340px;
+      height: 340px;
+      border-radius: 50%;
+      filter: blur(110px);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.35;
+      top: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: radial-gradient(circle, var(--accent-pink), transparent 70%);
+    }
+
+    .wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 2.2rem 1.2rem 4rem;
+    }
+
+    .view-page {
+      display: none;
+      animation: fadeIn 0.35s ease forwards;
+    }
+
+    .view-page.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .back-nav {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--accent-rose);
+      border: 1px solid var(--card-border);
+      padding: 0.5rem 1.1rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-bottom: 1.6rem;
+      transition: all 0.2s ease;
+    }
+    .back-nav:hover {
+      background: rgba(217, 70, 128, 0.2);
+    }
+
+    .portrait-stage {
+      position: relative;
+      width: 100%;
+      max-width: 340px;
+      margin: 0 auto 1.6rem;
+      border-radius: 28px;
+      padding: 3px;
+      background: linear-gradient(135deg, rgba(217, 70, 128, 0.75), rgba(243, 194, 122, 0.5), rgba(217, 70, 128, 0.3));
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6), 0 0 25px rgba(217, 70, 128, 0.3);
+      animation: floatMotion 3.8s ease-in-out infinite alternate;
+    }
+
+    @keyframes floatMotion {
+      0% { transform: translateY(0px) scale(1); }
+      100% { transform: translateY(-10px) scale(1.02); }
+    }
+
+    .portrait-frame {
+      width: 100%;
+      height: 380px;
+      border-radius: 25px;
+      overflow: hidden;
+      position: relative;
+      background: #140e1a;
+    }
+
+    .portrait-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      animation: zoomMotion 4.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes zoomMotion {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.08); }
+    }
+
+    .hero {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    .brand-pill {
+      display: inline-block;
+      font-size: 0.7rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--accent-rose);
+      background: rgba(217, 70, 128, 0.14);
+      border: 1px solid var(--card-border);
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      margin-bottom: 0.9rem;
+    }
+
+    .brand-name {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.4rem, 6vw, 2.1rem);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+      white-space: nowrap;
+      background: linear-gradient(120deg, #ffffff 30%, var(--accent-rose));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .tagline {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--accent-gold);
+      margin-bottom: 0.8rem;
+    }
+
+    .bio-text {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      margin-bottom: 1.3rem;
+      max-width: 440px;
+    }
+
+    .social-icon-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 1.6rem;
+    }
+
+    .social-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 12px;
+      height: 42px;
+      border-radius: 12px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      color: var(--text-main);
+      text-decoration: none;
+      font-size: 0.76rem;
+      font-weight: 600;
+      gap: 6px;
+      transition: all 0.25s ease;
+    }
+
+    .social-badge svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
+    .social-badge:hover {
+      border-color: var(--accent-rose);
+      background: rgba(217, 70, 128, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .menu-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0.95rem;
+      width: 100%;
+    }
+
+    .nav-tile {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      padding: 1.2rem 1.4rem;
+      border-radius: 18px;
+      cursor: pointer;
+      text-decoration: none;
+      color: var(--text-main);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+      transition: all 0.25s ease;
+    }
+
+    .nav-tile:hover {
+      border-color: var(--accent-rose);
+      transform: translateY(-2px);
+      background: rgba(30, 20, 36, 0.95);
+    }
+
+    .nav-tile .tile-info h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.05rem;
+      color: #fff;
+      margin-bottom: 0.2rem;
+    }
+
+    .nav-tile .tile-info span {
+      font-size: 0.8rem;
+      color: var(--accent-gold);
+    }
+
+    .nav-tile .tile-arrow {
+      font-size: 1.2rem;
+      color: var(--accent-rose);
+      font-weight: bold;
+    }
+
+    .page-header {
+      margin-bottom: 1.6rem;
+    }
+
+    .page-header h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.6rem;
+      color: #fff;
+      margin-bottom: 0.3rem;
+    }
+
+    .page-header p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .stack {
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+      width: 100%;
+    }
+
+    .card {
+      background: var(--card-bg);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    }
+
+    .video-player-frame {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%;
+      background: #000;
+    }
+
+    .video-player-frame iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .video-player-frame-short {
+      position: relative;
+      width: 100%;
+      padding-top: 135%;
+      background: #000;
+    }
+
+    .video-player-frame-short iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .card-thumb-img {
+      width: 100%;
+      height: 320px;
+      overflow: hidden;
+      background: #140d1c;
+      position: relative;
+    }
+
+    .card-thumb-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      display: block;
+    }
+
+    .card-body {
+      padding: 1.3rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-badge {
+      font-size: 0.7rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--accent-gold);
+      margin-bottom: 0.35rem;
+      display: block;
+    }
+
+    .card h3 {
+      font-size: 1.15rem;
+      margin-bottom: 0.4rem;
+      color: #fff;
+    }
+
+    .card p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 1.1rem;
+    }
+
+    .design-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      width: 100%;
+    }
+
+    .design-item {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    }
+
+    .design-item-img {
+      width: 100%;
+      height: 180px;
+      overflow: hidden;
+      background: #120b17;
+    }
+
+    .design-item-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .design-meta {
+      padding: 0.75rem 0.85rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .design-meta span {
+      font-size: 0.7rem;
+      color: var(--accent-gold);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      font-weight: 700;
+    }
+
+    .design-meta h4 {
+      font-size: 0.85rem;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 0.95rem 1.4rem;
+      border-radius: 14px;
+      font-weight: 600;
+      font-size: 0.92rem;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .btn-primary {
+      background: var(--btn-grad);
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(217, 70, 128, 0.4);
+      border: none;
+    }
+
+    .btn-outline {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-main);
+      border: 1px solid var(--card-border);
+    }
+
+    .feature-box {
+      background: linear-gradient(135deg, rgba(38, 14, 31, 0.88), rgba(18, 13, 23, 0.94));
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 1.6rem 1.3rem;
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    footer {
+      text-align: center;
+      color: rgba(255, 255, 255, 0.35);
+      font-size: 0.8rem;
+      margin-top: 3rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="ambient-glow"></div>
+
+  <div class="wrapper">
+
+    <!-- PAGE 1: HOME HUB -->
+    <div id="page-home" class="view-page active">
+      <div class="portrait-stage">
+        <div class="portrait-frame">
+          <img src="IMG_4447.jpeg" alt="MakkySignature" />
+        </div>
+      </div>
+
+      <header class="hero">
+        <span class="brand-pill">Visual Director &bull; AI Producer &bull; Voiceover Artist</span>
+        <h1 class="brand-name">MAKKYSIGNATURE</h1>
+        <div class="tagline">Cinematic Folktales &bull; Cartoons &bull; Audio Production</div>
+        <p class="bio-text">
+          Bridging African folklore, sci-fi animations, voiceover narrations, graphic branding, and custom music production using modern creative direction.
+        </p>
+
+        <div class="social-icon-row">
+          <a href="https://youtube.com/@makkysigstories?si=tCkwCPETmwiljqFi" target="_blank" class="social-badge" title="MakkySigStories">
+            <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            <span>Stories YT</span>
+          </a>
+          <a href="https://youtube.com/@kiddiesworldwithmakky?si=YQS8XBZimj44jbYg" target="_blank" class="social-badge" title="Kiddies World with Makky">
+            <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            <span>Kiddies YT</span>
+          </a>
+          <a href="https://x.com/marckieys?s=11" target="_blank" class="social-badge" title="X (Twitter)">
+            <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="https://www.facebook.com/share/r/1H47iLxb1V/?mibextid=wwXIfr" target="_blank" class="social-badge" title="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="https://www.tiktok.com/@makkysigstories?_r=1&_t=ZN-99d1pBYyvGo" target="_blank" class="social-badge" title="TikTok">
+            <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-1.01-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+          </a>
+        </div>
+
+        <button onclick="showPage('page-hire')" class="btn btn-primary" style="margin-bottom: 1.5rem;">
+          💼 Work With Me &amp; Community
+        </button>
+      </header>
+
+      <div class="menu-grid">
+        <div class="nav-tile" onclick="showPage('page-stories')">
+          <div class="tile-info">
+            <h3>MakkySigStories</h3>
+            <span>Episodic Cinema &bull; Cultural Drama</span>
+          </div>
+          <div class="tile-arrow">&rarr;</div>
+        </div>
+
+        <div class="nav-tile" onclick="showPage('page-cartoons')">
+          <div class="tile-info">
+            <h3>Kiddies World &bull; Cartoons &amp; Sci-Fi</h3>
+            <span>The Glitch Dragon &bull; Bedtime Moral Tales</span>
+          </div>
+          <div class="tile-arrow">&rarr;</div>
+        </div>
+
+        <div class="nav-tile" onclick="showPage('page-bible')">
+          <div class="tile-info">
+            <h3>Kiddies World &bull; Bible Series</h3>
+            <span>Scripture Animations &bull; Faith Stories</span>
+          </div>
+          <div class="tile-arrow">&rarr;</div>
+        </div>
+
+        <div class="nav-tile" onclick="showPage('page-graphics')">
+          <div class="tile-info">
+            <h3>Graphic Design &amp; Branding</h3>
+            <span>Flyers &bull; Thumbnails &bull; Brand Assets</span>
+          </div>
+          <div class="tile-arrow">&rarr;</div>
+        </div>
+
+        <div class="nav-tile" onclick="showPage('page-adverts')">
+          <div class="tile-info">
+            <h3>Commercials &amp; Brand Adverts</h3>
+            <span>Creative Ad Reels &bull; Concept Promos</span>
+          </div>
+          <div class="tile-arrow">&rarr;</div>
+        </div>
+
+        <div class="nav-tile" onclick="showPage('page-voiceover')">
+          <div class="tile-info">
+            <h3>Voiceover &amp; Studio</h3>
+            <span>Narration &bull; Commercial Voice &bull; Host</span>
+          </div>
+          <div class="tile-arrow">&rarr;</div>
+        </div>
+
+        <div class="nav-tile" onclick="showPage('page-audio')">
+          <div class="tile-info">
+            <h3>Audiomack &amp; Music</h3>
+            <span>Soundtracks &bull; Custom Compositions</span>
+          </div>
+          <div class="tile-arrow">&rarr;</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE 2: MAKKYSIGSTORIES -->
+    <div id="page-stories" class="view-page">
+      <button class="back-nav" onclick="showPage('page-home')">&larr; Back to Main Hub</button>
+      
+      <div class="page-header">
+        <h2>MakkySigStories</h2>
+        <p>Episodic movies, drama series, and rich cultural folklore.</p>
+      </div>
+
+      <div class="stack">
+        <div class="card">
+          <div class="video-player-frame">
+            <iframe src="https://www.youtube-nocookie.com/embed/M_32v1-T3dg" allowfullscreen></iframe>
+          </div>
+          <div class="card-body">
+            <span class="card-badge">Featured Episode</span>
+            <h3>The Price of Beauty: Side Chick Exiled to Village</h3>
+            <p>High-stakes dramatic storytelling, betrayal, and redemption produced with cinema-grade AI visuals.</p>
+            <a href="https://youtu.be/M_32v1-T3dg?si=Ty-4PUfqL_RY9aa2" target="_blank" class="btn btn-outline">▶ Watch on YouTube App</a>
+          </div>
+        </div>
+
+        <a href="https://youtube.com/@makkysigstories?si=tCkwCPETmwiljqFi" target="_blank" class="btn btn-primary">
+          ▶ Explore Full YouTube Channel
+        </a>
+      </div>
+    </div>
+
+    <!-- PAGE 3: KIDDIES WORLD - CARTOONS & 3D ANIMATION -->
+    <div id="page-cartoons" class="view-page">
+      <button class="back-nav" onclick="showPage('page-home')">&larr; Back to Main Hub</button>
+      
+      <div class="page-header">
+        <span class="card-badge">YouTube Channel</span>
+        <h2>Kiddies World with Makky</h2>
+        <p>3D animation, Guardians of the Aether, and bedtime moral stories.</p>
+      </div>
+
+      <div class="stack">
+        <div class="card">
+          <div class="video-player-frame">
+            <iframe src="https://www.youtube-nocookie.com/embed/W8_qRMrOsGY" allowfullscreen></iframe>
+          </div>
+          <div class="card-body">
+            <span class="card-badge">3D Animated Movie</span>
+            <h3>4 Kids vs The Glitch Dragon | Guardians of the Aether</h3>
+            <p>An epic sci-fi universe where heroes battle to save human imagination from deletion.</p>
+            <a href="https://youtu.be/W8_qRMrOsGY?si=NbOU6G-01bOtK4p4" target="_blank" class="btn btn-outline">▶ Watch Movie on YouTube</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-thumb-img">
+            <img src="https://img.youtube.com/vi/ATBXbNE73JQ/maxresdefault.jpg" onerror="this.onerror=null; this.src='https://img.youtube.com/vi/ATBXbNE73JQ/hqdefault.jpg';" alt="Bedtime Tales" />
+          </div>
+          <div class="card-body">
+            <span class="card-badge">Bedtime Moral Tales</span>
+            <h3>Barnaby &amp; Magical Bedtime Stories</h3>
+            <p>Whimsical, soothing sleep-time adventures and moral lessons for young minds.</p>
+            <a href="https://youtube.com/@kiddiesworldwithmakky?si=YQS8XBZimj44jbYg" target="_blank" class="btn btn-outline">▶ Explore Bedtime Tales</a>
+          </div>
+        </div>
+
+        <a href="https://youtube.com/@kiddiesworldwithmakky?si=YQS8XBZimj44jbYg" target="_blank" class="btn btn-primary">
+          ▶ Subscribe to Kiddies World on YouTube
+        </a>
+      </div>
+    </div>
+
+    <!-- PAGE 4: KIDDIES WORLD - BIBLE STORIES -->
+    <div id="page-bible" class="view-page">
+      <button class="back-nav" onclick="showPage('page-home')">&larr; Back to Main Hub</button>
+      
+      <div class="page-header">
+        <span class="card-badge">YouTube Channel</span>
+        <h2>Kiddies World with Makky</h2>
+        <p>Illustrated Scripture stories and Sunday school animations.</p>
+      </div>
+
+      <div class="stack">
+        <div class="card">
+          <div class="video-player-frame-short">
+            <iframe src="https://www.youtube-nocookie.com/embed/mpTXgw0I4eY" allowfullscreen></iframe>
+          </div>
+          <div class="card-body">
+            <span class="card-badge">Genesis 6–9</span>
+            <h3>Noah’s Ark &amp; The Magical Rainbow</h3>
+            <p>A fun and faithful animated retelling of faith, perseverance, and promise.</p>
+            <a href="https://youtube.com/@kiddiesworldwithmakky?si=YQS8XBZimj44jbYg" target="_blank" class="btn btn-outline">▶ Watch Sunday School Series</a>
+          </div>
+        </div>
+
+        <a href="https://youtube.com/@kiddiesworldwithmakky?si=YQS8XBZimj44jbYg" target="_blank" class="btn btn-primary">
+          ▶ Explore Kiddies World Channel
+        </a>
+      </div>
+    </div>
+
+    <!-- PAGE 5: GRAPHIC DESIGN & BRANDING -->
+    <div id="page-graphics" class="view-page">
+      <button class="back-nav" onclick="showPage('page-home')">&larr; Back to Main Hub</button>
+      
+      <div class="page-header">
+        <h2>Graphic Design &amp; Branding</h2>
+        <p>Visual identity, custom flyers, promo art, and YouTube thumbnails.</p>
+      </div>
+
+      <div class="design-grid">
+        <div class="design-item">
+          <div class="design-item-img">
+            <img src="IMG_4524.jpeg" alt="Graphic Design 1" />
+          </div>
+          <div class="design-meta">
+            <span>Visual Concept</span>
+            <h4>Brand Asset 01</h4>
+          </div>
+        </div>
+
+        <div class="design-item">
+          <div class="design-item-img">
+            <img src="IMG_5870.jpeg" alt="Graphic Design 2" />
+          </div>
+          <div class="design-meta">
+            <span>Social Poster</span>
+            <h4>Creative Flyer 02</h4>
+          </div>
+        </div>
+
+        <div class="design-item">
+          <div class="design-item-img">
+            <img src="IMG_7058.jpeg" alt="Graphic Design 3" />
+          </div>
+          <div class="design-meta">
+            <span>Thumbnail Design</span>
+            <h4>Promo Artwork 03</h4>
+          </div>
+        </div>
+
+        <div class="design-item">
+          <div class="design-item-img">
+            <img src="IMG_5098.jpeg" alt="Graphic Design 4" />
+          </div>
+          <div class="design-meta">
+            <span>Cover Artwork</span>
+            <h4>Music / Brand 04</h4>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-box" style="margin-top: 1.5rem;">
+        <span class="brand-pill">Commission A Design</span>
+        <h3 style="font-family:'Cinzel',serif; font-size:1.2rem; margin-bottom:0.4rem; color:#fff;">Need High-End Visuals?</h3>
+        <p style="color:var(--text-muted); font-size:0.88rem; margin-bottom:1.2rem;">
+          Available for bespoke YouTube thumbnails, event flyers, social media kits, and brand cover artwork.
+        </p>
+        <a href="https://wa.me/2348138517721?text=Hello%20Makky,%20I'd%20like%20to%20hire%20you%20for%20a%20graphic%20design%20project!" target="_blank" class="btn btn-primary">
+          🎨 Hire Me for Graphic Design
+        </a>
+      </div>
+    </div>
+
+    <!-- PAGE 6: COMMERCIALS & BRAND ADVERTS -->
+    <div id="page-adverts" class="view-page">
+      <button class="back-nav" onclick="showPage('page-home')">&larr; Back to Main Hub</button>
+      
+      <div class="page-header">
+        <h2>Brand Adverts &amp; Commercials</h2>
+        <p>High-energy concept advertising and promo reels.</p>
+      </div>
+
+      <div class="stack">
+        <div class="card">
+          <div class="card-thumb-img">
+            <img src="IMG_4606.jpeg" alt="Guinness Advert Splash" />
+          </div>
+          <div class="card-body">
+            <span class="card-badge">Concept Advert Reel</span>
+            <h3>Guinness Brand Concept Promo</h3>
+            <p>Cinematic visual storytelling, fluid motion, and high-impact promo directing for commercial brands.</p>
+            <a href="https://www.facebook.com/share/r/1H47iLxb1V/?mibextid=wwXIfr" target="_blank" class="btn btn-primary">
+              📱 Watch Advert on Facebook
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE 7: VOICEOVER & STUDIO -->
+    <div id="page-voiceover" class="view-page">
+      <button class="back-nav" onclick="showPage('page-home')">&larr; Back to Main Hub</button>
+      
+      <div class="page-header">
+        <h2>Voiceover &amp; Studio</h2>
+        <p>Character voicing, narration, commercials, and podcast hosting.</p>
+      </div>
+
+      <div class="stack">
+        <div class="card">
+          <div class="card-thumb-img">
+            <img src="IMG_4453.jpeg" alt="Podcast Studio Session" />
+          </div>
+          <div class="card-body">
+            <span class="card-badge">Microphone &amp; Studio Production</span>
+            <h3>Broadcast Commercial Voiceovers</h3>
+            <p>Vibrant vocal performance for animation characters, corporate ads, audiobooks, and documentary films.</p>
+            <a href="https://wa.me/2348138517721?text=Hello%20Makky,%20I'd%20like%20to%20book%20you%20for%20a%20voiceover%20or%20podcast%20project" target="_blank" class="btn btn-primary">🎙️ Request Voiceover Session</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE 8: AUDIOMACK & MUSIC -->
+    <div id="page-audio" class="view-page">
+      <button class="back-nav" onclick="showPage('page-home')">&larr; Back to Main Hub</button>
+      
+      <div class="page-header">
+        <h2>Audiomack &amp; Music</h2>
+        <p>Soundtracks, scoring, and original AI vocal tracks.</p>
+      </div>
+
+      <div class="stack">
+        <div class="card">
+          <div class="card-thumb-img">
+            <img src="IMG_5098.jpeg" alt="Audiomack Cover" />
+          </div>
+          <div class="card-body">
+            <span class="card-badge">Original Streaming Track</span>
+            <h3>Audiomack Sound Catalog</h3>
+            <p>Dynamic music beds, theme songs, and mood tracks designed for cinematic media creators.</p>
+            <a href="https://audiomack.com/chiamaka-blessing-okoro" target="_blank" class="btn btn-outline">🎵 Stream on Audiomack</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE 9: HIRE & COMMUNITY -->
+    <div id="page-hire" class="view-page">
+      <button class="back-nav" onclick="showPage('page-home')">&larr; Back to Main Hub</button>
+      
+      <div class="page-header">
+        <h2>Work With Me &amp; Updates</h2>
+        <p>Direct bookings, community updates, and coaching.</p>
+      </div>
+
+      <div class="feature-box">
+        <span class="brand-pill">Join Community</span>
+        <h3 style="font-family:'Cinzel',serif; font-size:1.25rem; margin-bottom:0.5rem; color:#fff;">Get First-Hand Updates</h3>
+        <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1.3rem;">
+          Connect directly on WhatsApp to receive exclusive story previews, new releases, and behind-the-scenes content.
+        </p>
+        <a href="https://wa.me/2348138517721?text=Hello%20Makky,%20I%20want%20to%20join%20your%20community%20for%20updates!" target="_blank" class="btn btn-primary">
+          💬 Join on WhatsApp (08138517721)
+        </a>
+      </div>
+
+      <div class="feature-box" style="margin-top:1.2rem;">
+        <span class="brand-pill">Direct Inquiries</span>
+        <h3 style="font-family:'Cinzel',serif; font-size:1.25rem; margin-bottom:0.5rem; color:#fff;">Hire Me For Projects</h3>
+        <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1.3rem;">
+          Available for commercial concept directing, graphic branding, character animation, and voiceover retainers.
+        </p>
+        <a href="mailto:amieeblessing@gmail.com?subject=Project%20Inquiry%20-%20MakkySignature" class="btn btn-outline">
+          ✉️ Email: amieeblessing@gmail.com
+        </a>
+      </div>
+
+      <div class="feature-box" style="margin-top:1.2rem;">
+        <span class="brand-pill">1:1 Coaching</span>
+        <h3 style="font-family:'Cinzel',serif; font-size:1.25rem; margin-bottom:0.5rem; color:#fff;">AI Video Creation Mentorship</h3>
+        <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1.3rem;">
+          Learn scriptwriting, consistent characters, animation styling, and editing.
+        </p>
+        <a href="https://wa.me/2348138517721?text=Hello%20Makky,%20I'm%20ready%20to%20join%20your%201:1%20AI%20Video%20Coaching" target="_blank" class="btn btn-primary">
+          ⚡ Book Coaching Session
+        </a>
+      </div>
+    </div>
+
+    <footer>&copy; 2026 MakkySignature. All Rights Reserved.</footer>
+
+  </div>
+
+  <script>
+    function showPage(pageId) {
+      const pages = document.querySelectorAll('.view-page');
+      pages.forEach(p => p.classList.remove('active'));
+      const target = document.getElementById(pageId);
+      if (target) {
+        target.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+  </script>
+
+</body>
+</html>
