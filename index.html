@@ -164,6 +164,13 @@
     }
     .btn-primary { background: var(--btn-grad); color: #fff; border: none; }
     
+    .cta-box {
+      background: linear-gradient(135deg, rgba(38, 14, 31, 0.88), rgba(18, 13, 23, 0.94));
+      border: 1px solid var(--card-border); border-radius: 20px; padding: 1.8rem 1.4rem; text-align: center; margin-top: 2rem;
+    }
+    .cta-box h3 { font-family: 'Cinzel', serif; font-size: 1.2rem; color: #fff; margin-bottom: 0.6rem; }
+    .cta-box p { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1.2rem; line-height: 1.6; }
+
     footer { text-align: center; color: rgba(255, 255, 255, 0.35); font-size: 0.78rem; margin-top: 3rem; }
   </style>
 </head>
@@ -181,7 +188,7 @@
       <header class="hero">
         <span class="brand-pill">AI Creative Director &bull; Visual Storyteller</span>
         <h1 class="brand-name">MAKKYSIGNATURE</h1>
-        <p class="hero-intro">I turn ideas into cinematic stories, engaging visuals, and digital experiences using AI, design, and creative media.</p>
+        <p class="hero-intro">I turn ideas into stories, visuals and experiences—using AI, design and a little bit of Makky magic.</p>
 
         <div class="social-icon-row">
           <a href="https://youtube.com/@makkysigstories?si=tCkwCPETmwiljqFi" target="_blank" class="social-badge">
@@ -201,7 +208,10 @@
 
       <div class="about-box">
         <h3>✨ About Makky</h3>
-        <p>Nigerian creative professional and accountant turned digital creator, specializing in AI-powered storytelling, visual content, graphic design, and creative production.</p>
+        <p>I’m Makky—a Nigerian creative who loves turning ideas into something people can see, hear and feel.</p>
+        <p>I create AI-powered stories, visual content, designs and creative concepts, blending technology with storytelling to bring ideas to life.</p>
+        <p>From cinematic stories and children’s content to branding, advertising concepts and digital media, I enjoy creating work that feels intentional, beautiful and memorable.</p>
+        
         <div class="skills-pills">
           <span class="skill-tag">AI Video</span>
           <span class="skill-tag">Storytelling</span>
@@ -216,33 +226,39 @@
 
       <div class="menu-grid">
         <div class="nav-tile" onclick="showPage('page-stories')">
-          <div class="tile-info"><h3>MakkySigStories</h3><span>Episodic Cinema &bull; Drama</span></div>
+          <div class="tile-info"><h3>MakkySigStories</h3><span>Cinematic stories, characters &amp; worlds</span></div>
           <div class="play-badge"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Play</div>
         </div>
         <div class="nav-tile" onclick="showPage('page-cartoons')">
-          <div class="tile-info"><h3>Kiddies Cartoons &amp; Sci-Fi</h3><span>The Glitch Dragon &bull; Morals</span></div>
+          <div class="tile-info"><h3>Kiddies Cartoons &amp; Sci-Fi</h3><span>Imagination, warmth &amp; magic</span></div>
           <div class="play-badge"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Play</div>
         </div>
         <div class="nav-tile" onclick="showPage('page-bible')">
-          <div class="tile-info"><h3>Kiddies Bible Series</h3><span>Scripture Animations</span></div>
+          <div class="tile-info"><h3>Kiddies Bible Series</h3><span>Timeless stories kids remember</span></div>
           <div class="play-badge"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Play</div>
         </div>
         <div class="nav-tile" onclick="showPage('page-graphics')">
-          <div class="tile-info"><h3>Graphic Design &amp; Branding</h3><span>Flyers &bull; Thumbnails</span></div>
+          <div class="tile-info"><h3>Graphic Design &amp; Branding</h3><span>Graphics, branding &amp; digital content</span></div>
           <div class="play-badge"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> View</div>
         </div>
         <div class="nav-tile" onclick="showPage('page-adverts')">
-          <div class="tile-info"><h3>Commercial Adverts</h3><span>Concept Promos &bull; Reels</span></div>
+          <div class="tile-info"><h3>Commercial Adverts</h3><span>Ideas for brands &amp; campaigns</span></div>
           <div class="play-badge"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Play</div>
         </div>
         <div class="nav-tile" onclick="showPage('page-voiceover')">
-          <div class="tile-info"><h3>Voiceover &amp; Studio</h3><span>Narration &bull; Commercials</span></div>
+          <div class="tile-info"><h3>Voiceover &amp; Studio</h3><span>Voiceover, music &amp; audio</span></div>
           <div class="play-badge"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Listen</div>
         </div>
         <div class="nav-tile" onclick="showPage('page-audio')">
-          <div class="tile-info"><h3>Audiomack &amp; Music</h3><span>Soundtracks &bull; Compositions</span></div>
+          <div class="tile-info"><h3>Audiomack &amp; Music</h3><span>Soundtracks &amp; Compositions</span></div>
           <div class="play-badge"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Listen</div>
         </div>
+      </div>
+
+      <div class="cta-box">
+        <h3>Have an idea? Let’s make something out of it.</h3>
+        <p>Got a story, brand, product or wild idea sitting in your head? Bring it to Makky. Let’s turn it into something people can see, feel and remember.</p>
+        <a href="https://wa.me/2348138517721" target="_blank" class="btn btn-primary">LET’S CREATE →</a>
       </div>
     </div>
 
@@ -256,7 +272,7 @@
           <div class="card-body">
             <span class="card-badge">Featured Cinematic Episode</span>
             <h3>Side Chick Exiled to Village! She Grabbed the Machete</h3>
-            <p>High-stakes dramatic storytelling, betrayal, and redemption produced with cinema-grade AI visuals.</p>
+            <p>A story brought to life with AI—built around emotion, atmosphere and characters that feel real.</p>
             <a href="https://youtu.be/M_32v1-T3dg" target="_blank" class="btn btn-primary">▶ Watch Full Video on YouTube</a>
           </div>
         </div>
@@ -273,6 +289,7 @@
           <div class="card-body">
             <span class="card-badge">3D Animated Movie</span>
             <h3>4 Kids vs The Glitch Dragon</h3>
+            <p>Stories made for little minds—with imagination, warmth and a little magic.</p>
             <a href="https://youtu.be/W8_qRMrOsGY" target="_blank" class="btn btn-primary">▶ Watch Movie on YouTube</a>
           </div>
         </div>
@@ -289,6 +306,7 @@
           <div class="card-body">
             <span class="card-badge">Bible Animation</span>
             <h3>They Threw Him to the Lions</h3>
+            <p>Turning timeless Bible stories into visuals children can connect with and remember.</p>
             <a href="https://youtu.be/vQ5K4ShOCXQ" target="_blank" class="btn btn-primary">▶ Watch Story on YouTube</a>
           </div>
         </div>
@@ -320,6 +338,7 @@
           <div class="card-thumb-img"><img src="IMG_4606.jpeg" alt="Guinness" /></div>
           <div class="card-body">
             <h3>Guinness Brand Concept Promo</h3>
+            <p>I take a simple product or idea and turn it into something people want to stop and watch.</p>
             <a href="https://www.facebook.com/share/r/1H47iLxb1V/" target="_blank" class="btn btn-primary">📱 Watch Commercial Reel</a>
           </div>
         </div>
@@ -335,6 +354,7 @@
           <div class="card-thumb-img"><img src="IMG_4453.jpeg" alt="Studio" /></div>
           <div class="card-body">
             <h3>Broadcast Voice Sessions</h3>
+            <p>Professional voice work that adds a distinct human tone and emotional depth to any script.</p>
             <a href="https://wa.me/2348138517721" target="_blank" class="btn btn-primary">🎙️ Book Voice Session</a>
           </div>
         </div>
@@ -350,6 +370,7 @@
           <div class="card-thumb-img"><img src="IMG_5098.jpeg" alt="Music" /></div>
           <div class="card-body">
             <h3>Sound Catalog</h3>
+            <p>Custom soundscapes, background scores, and audio productions tailored for storytelling.</p>
             <a href="https://audiomack.com/chiamaka-blessing-okoro" target="_blank" class="btn btn-primary">🎵 Stream on Audiomack</a>
           </div>
         </div>
