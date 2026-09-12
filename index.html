@@ -118,61 +118,6 @@
     }
     .social-badge svg { width: 15px; height: 15px; fill: currentColor; }
 
-    /* Cinematic Live Trailer Preview Grid on Home Page */
-    .trailer-showcase {
-      margin: 1.5rem 0;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    .trailer-header {
-      font-family: 'Cinzel', serif;
-      font-size: 1.05rem;
-      color: var(--accent-rose);
-      margin-bottom: 0.2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .trailer-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 12px;
-    }
-    .trailer-card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 18px;
-      overflow: hidden;
-      cursor: pointer;
-      position: relative;
-    }
-    .trailer-preview {
-      width: 100%;
-      aspect-ratio: 16/9;
-      background: #000;
-      position: relative;
-    }
-    .trailer-preview video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    .trailer-overlay-label {
-      position: absolute;
-      bottom: 8px;
-      left: 8px;
-      background: rgba(0, 0, 0, 0.75);
-      backdrop-filter: blur(4px);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      padding: 0.3rem 0.7rem;
-      border-radius: 8px;
-      font-size: 0.72rem;
-      font-weight: 600;
-      color: #fff;
-    }
-
     .menu-grid { display: flex; flex-direction: column; gap: 0.9rem; width: 100%; margin-top: 1.5rem; }
     .nav-tile {
       display: flex; align-items: center; justify-content: space-between; background: var(--card-bg);
@@ -193,6 +138,8 @@
 
     .stack { display: flex; flex-direction: column; gap: 1.4rem; width: 100%; }
     .card { background: var(--card-bg); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; }
+    .card-thumb-img { width: 100%; aspect-ratio: 16/9; overflow: hidden; background: #201328; display: flex; align-items: center; justify-content: center; color: var(--accent-rose); font-weight: 600; font-size: 0.9rem; cursor: pointer; }
+    .card-thumb-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .card-body { padding: 1.3rem; display: flex; flex-direction: column; }
     .card-badge { font-size: 0.7rem; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; color: var(--accent-gold); margin-bottom: 0.35rem; display: block; }
     .card h3 { font-size: 1.12rem; margin-bottom: 0.4rem; color: #fff; }
@@ -200,7 +147,7 @@
 
     .design-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; width: 100%; }
     .design-item { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px; overflow: hidden; cursor: pointer; }
-    .design-item-img { width: 100%; height: 170px; overflow: hidden; background: #120b17; }
+    .design-item-img { width: 100%; height: 170px; overflow: hidden; background: #120b17; display: flex; align-items: center; justify-content: center; color: var(--accent-gold); font-size: 0.8rem; }
     .design-item-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .design-meta { padding: 0.75rem 0.85rem; display: flex; flex-direction: column; gap: 2px; }
     .design-meta span { font-size: 0.7rem; color: var(--accent-gold); text-transform: uppercase; font-weight: 700; }
@@ -231,7 +178,7 @@
     <!-- PAGE 1: HOME HUB -->
     <div id="page-home" class="view-page active">
       <div class="portrait-stage">
-        <div class="portrait-frame"><img src="IMG_4447.jpeg" alt="MakkySignature" /></div>
+        <div class="portrait-frame"><img src="IMG_4447.jpeg" alt="MakkySignature" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=60'" /></div>
       </div>
 
       <header class="hero">
@@ -303,36 +250,8 @@
         <p>I don’t just generate AI content. I develop concepts, shape stories, direct visuals and turn ideas into finished creative experiences.</p>
       </div>
 
-      <!-- LIVE TRAILER REEL SHOWCASE ON HOME PAGE -->
-      <div class="trailer-showcase">
-        <div class="trailer-header">
-          <span>Featured Trailers &amp; Reels</span>
-        </div>
-        <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.6rem;">Watch highlights playing below or tap to explore full portfolio categories.</p>
-        
-        <div class="trailer-grid">
-          <div class="trailer-card" onclick="showPage('page-stories')">
-            <div class="trailer-preview">
-              <video autoplay muted loop playsinline>
-                <source src="story-trailer.mp4" type="video/mp4">
-              </video>
-              <div class="trailer-overlay-label">▶ MakkySigStories Hub</div>
-            </div>
-          </div>
-
-          <div class="trailer-card" onclick="showPage('page-cartoons')">
-            <div class="trailer-preview">
-              <video autoplay muted loop playsinline>
-                <source src="cartoon-trailer.mp4" type="video/mp4">
-              </video>
-              <div class="trailer-overlay-label">▶ Kiddies Cartoons Hub</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <!-- Button leading to Page 2 (Portfolios Hub) -->
-      <button class="btn btn-primary" onclick="showPage('page-portfolios')">EXPLORE ALL PORTFOLIOS →</button>
+      <button class="btn btn-primary" onclick="showPage('page-portfolios')">EXPLORE PORTFOLIOS →</button>
 
       <div class="cta-box">
         <h3>Have an idea? Let’s make something out of it.</h3>
@@ -378,12 +297,13 @@
       </div>
     </div>
 
-    <!-- PAGE 3 SECTIONS: DETAILED VIEWS -->
+    <!-- PAGE 3 SECTIONS -->
     <div id="page-stories" class="view-page">
       <button class="back-nav" onclick="showPage('page-portfolios')">&larr; Back to Portfolios</button>
       <div class="page-header"><h2>MakkySigStories</h2><p>Episodic movies, drama series, and rich cultural folklore.</p></div>
       <div class="stack">
         <div class="card">
+          <div class="card-thumb-img"><img src="https://img.youtube.com/vi/M_32v1-T3dg/hqdefault.jpg" alt="Story" onerror="this.parentElement.innerHTML='🎬 MakkySigStories Preview'" /></div>
           <div class="card-body">
             <span class="card-badge">Featured Cinematic Episode</span>
             <h3>Side Chick Exiled to Village! She Grabbed the Machete</h3>
@@ -399,6 +319,7 @@
       <div class="page-header"><h2>Kiddies World Cartoons</h2><p>3D animation and sci-fi adventures for kids.</p></div>
       <div class="stack">
         <div class="card">
+          <div class="card-thumb-img"><img src="https://img.youtube.com/vi/W8_qRMrOsGY/hqdefault.jpg" alt="Cartoon" onerror="this.parentElement.innerHTML='🚀 Kiddies Cartoons Preview'" /></div>
           <div class="card-body">
             <span class="card-badge">3D Animated Movie</span>
             <h3>4 Kids vs The Glitch Dragon</h3>
@@ -414,6 +335,7 @@
       <div class="page-header"><h2>Kiddies Bible Series</h2><p>Scripture animations and Sunday school moral tales.</p></div>
       <div class="stack">
         <div class="card">
+          <div class="card-thumb-img"><img src="https://img.youtube.com/vi/vQ5K4ShOCXQ/hqdefault.jpg" alt="Bible" onerror="this.parentElement.innerHTML='📖 Bible Series Preview'" /></div>
           <div class="card-body">
             <span class="card-badge">Bible Animation</span>
             <h3>They Threw Him to the Lions</h3>
@@ -429,11 +351,11 @@
       <div class="page-header"><h2>Graphic Design &amp; Branding</h2><p>Flyers, thumbnails, and visual identity projects.</p></div>
       <div class="design-grid">
         <div class="design-item">
-          <div class="design-item-img"><img src="IMG_4524.jpeg" alt="Flyer" /></div>
+          <div class="design-item-img"><img src="IMG_4524.jpeg" alt="Flyer" onerror="this.parentElement.innerHTML='🎨 Emmaco Flyer'" /></div>
           <div class="design-meta"><span>Flyer</span><h4>Emmaco Ventures</h4></div>
         </div>
         <div class="design-item">
-          <div class="design-item-img"><img src="IMG_5870.jpeg" alt="Promo" /></div>
+          <div class="design-item-img"><img src="IMG_5870.jpeg" alt="Promo" onerror="this.parentElement.innerHTML='🎨 Zmart Tech'" /></div>
           <div class="design-meta"><span>Promo</span><h4>Zmart Tech</h4></div>
         </div>
       </div>
@@ -444,6 +366,7 @@
       <div class="page-header"><h2>Commercials &amp; Brand Adverts</h2><p>Creative commercial concepts and promotional reels.</p></div>
       <div class="stack">
         <div class="card">
+          <div class="card-thumb-img"><img src="IMG_4606.jpeg" alt="Ad" onerror="this.parentElement.innerHTML='📢 Guinness Promo'" /></div>
           <div class="card-body">
             <h3>Guinness Brand Concept Promo</h3>
             <p>I take a simple product or idea and turn it into something people want to stop and watch.</p>
@@ -458,6 +381,7 @@
       <div class="page-header"><h2>Voiceover &amp; Studio</h2><p>Professional narration, commercial voiceovers, and hosting.</p></div>
       <div class="stack">
         <div class="card">
+          <div class="card-thumb-img"><img src="IMG_4453.jpeg" alt="Voice" onerror="this.parentElement.innerHTML='🎙️ Voice Sessions'" /></div>
           <div class="card-body">
             <h3>Broadcast Voice Sessions</h3>
             <p>Professional voice work that adds a distinct human tone and emotional depth to any script.</p>
@@ -472,6 +396,7 @@
       <div class="page-header"><h2>Audiomack &amp; Music</h2><p>Original soundtracks and custom compositions.</p></div>
       <div class="stack">
         <div class="card">
+          <div class="card-thumb-img"><img src="IMG_5098.jpeg" alt="Audio" onerror="this.parentElement.innerHTML='🎵 Sound Catalog'" /></div>
           <div class="card-body">
             <h3>Sound Catalog</h3>
             <p>Custom soundscapes, background scores, and audio productions tailored for storytelling.</p>
